@@ -1,2 +1,2 @@
 #!/bin/bash
-echo {a..n}{a..n}\n,{p..z}{p..z}\n
+echo {a..z}{a..z}\n | -d oo
