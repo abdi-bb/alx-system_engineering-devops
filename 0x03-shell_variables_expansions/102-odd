@@ -1,0 +1,2 @@
+#!bin/bash
+cat -n | cut -6 | grep ^[13579] | cut -f2
