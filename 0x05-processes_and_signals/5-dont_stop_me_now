@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Bash script that stops the process '4-to_infinity_and_beyond'
 
-process_ID=pidof "4-to_infinity_and_beyond"
-sudo kill -9 "$process_ID"
+kill "$(ps aux | pgrep '4-to_infinity_and_beyond' | awk '{print $2}')"
