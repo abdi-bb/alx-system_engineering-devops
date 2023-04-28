@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Bash script that does certain operations
 
-echo "$$" > /var/run/myscript.pid
 quit_handler() {
 	rm /var/run/myscript.pid
 	exit
 }
+echo "$$" > /var/run/myscript.pid
 
 while true; do
 	echo "To infinity and beyond"
