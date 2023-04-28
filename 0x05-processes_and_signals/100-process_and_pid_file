@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Bash script that does certain operations
 
-echo '"echo $$" > /var/run/myscript.pid'
-quit_handler() {
+echo "$$" > /var/run/myscript.pid
+function quit_handler() {
 	rm /var/run/myscript.pid
 	exit
 }
