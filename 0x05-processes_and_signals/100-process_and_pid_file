@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Bash script that does certain operations
 
-quit_handler() {
+function quit_handler() {
 	rm /var/run/myscript.pid
 	exit
 }
@@ -10,7 +10,7 @@ echo "$$" > /var/run/myscript.pid
 while true; do
 	echo "To infinity and beyond"
 	sleep 2
-	trap 'echo "I hate the kill command"' SIGTERM
+	trap 'echo "I hate the kill command" && quit_handler' SIGTERM
 	trap 'echo "Y U no love me?!"' SIGINT
 	trap 'quit_handler' SIGQUIT
 done
