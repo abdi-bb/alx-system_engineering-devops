@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 # Bash script for a process responding to SIGTERM
 
-trap 'echo "I am invincible!!!" SIGTERM'
+function trap_handler()
+{
+	echo "I am invincible!!!"
+	exit 0
+}
+
+trap trap_handler SIGTERM
 
 while true
 do
