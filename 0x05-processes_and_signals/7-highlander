@@ -7,10 +7,9 @@ function trap_handler()
 	exit 0
 }
 
-trap trap_handler SIGTERM
-
 while true
 do
 	echo "To infinity and beyond"
 	sleep 2
+	trap trap_handler SIGTERM
 done
