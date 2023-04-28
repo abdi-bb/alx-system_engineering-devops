@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Bash script that kills the process 7-highlander
 
-kill -SIGKILL "$(pidof 7-highlander)"
+kill -SIGKILL "$(pgrep 7-highlander)"
