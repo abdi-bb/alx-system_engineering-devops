@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
 # Bash script for a process responding to SIGTERM
 
-function trap_handler()
-{
-	echo "I am invincible!!!"
-	exit 0
-}
-
 while true
 do
 	echo "To infinity and beyond"
 	sleep 2
-	trap trap_handler SIGTERM
+	trap 'echo "I am invincible!!!"' SIGTERM
 done
