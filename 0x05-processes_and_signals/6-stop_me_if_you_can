@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 # Stop a process without using kill and killall
 
-PID=$(pgrep -f "4-to_infinity_and_beyond")
-
-echo -n | pkill -P "$PID"
+pkill -f 4-to_infinity_and_beyond
