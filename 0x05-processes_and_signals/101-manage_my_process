@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Manages a process: start, stop and restart
+
+PID_FILE=/var/run/my_process.pid
+
+case "$1" in
+  start)
+    if [ -f $PID_FILE ]; then
+      echo "Error: Process is already running."
+      exit 1
+    fi
+    ./manage_my_process &
+    echo $! > $PID_FILE
+    echo "manage_my_process started"
+    ;;
+  stop)
+    if [ ! -f $PID_FILE ]; then
+      echo "Error: Process is not running."
+      exit 1
+    fi
+    kill "$(cat $PID_FILE)"
+    rm $PID_FILE
+    echo "manage_my_process stopped"
+    ;;
+  restart)
+    if [ -f $PID_FILE ]; then
+      kill "$(cat $PID_FILE)"
+      rm $PID_FILE
+    fi
+    ./manage_my_process &
+    echo $! > $PID_FILE
+    echo "manage_my_process restarted"
+    ;;
+  *)
+    echo "Usage: manage_my_process {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0
+
