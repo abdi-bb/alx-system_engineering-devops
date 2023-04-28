@@ -2,7 +2,7 @@
 # Bash script that does certain operations
 
 echo "$$" > /var/run/myscript.pid
-function quit_handler() {
+quit_handler() {
 	rm /var/run/myscript.pid
 	exit
 }
