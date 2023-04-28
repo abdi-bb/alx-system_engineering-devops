@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Displays the PID, along with the process name, of processes whose name contain the word bash
+# shellcheck disable=SC2009
+
+for pid in /proc/*/; do
+	pid=${pid%*/}
+	pid=${pid##*/}
+
+	if [[ -f "/proc/$pid/cmdline" ]]; then
+		cmdline=$(tr '\0' ' ' < "/proc/$pid/cmdline")
+		if [[ "$cmdline" == *"bash"* ]]; then
+			echo "$pid bash"
+		fi
+	fi
+done
