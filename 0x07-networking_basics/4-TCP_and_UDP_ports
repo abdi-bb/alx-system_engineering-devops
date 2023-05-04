@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
-# Bash script that displays listening ports
+# Bash script that displays ports and sockets
 
-echo "Active Internet connections (only servers)"
-echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
-
-netstat -tnlp | awk '$6 == "LISTEN" {print}'
-
-netstat -unlp | awk '$6 == "UNCONN" {print}'
-
-echo "Active UNIX domain sockets (only servers)"
-echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
-
-netstat -xnl | awk '$1 == "unix" && $NF ~ /^\/.*/ {print}'
+netstat --listening --program
