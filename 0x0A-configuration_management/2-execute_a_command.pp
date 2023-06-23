@@ -5,5 +5,5 @@ exec { 'pkill':
   path        => '/usr/bin:/usr/sbin:/bin:/sbin',
   refreshonly => true,
   subscribe   => File['/killmenow'],
-  provider    => 'posix',
+  provider    => 'shell',
 }
