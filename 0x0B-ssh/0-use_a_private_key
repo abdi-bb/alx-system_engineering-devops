@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script to connect to a server(8.8.8.8) using a private key
+# from(~/.ssh/school) and user "ubuntu"
+
+ssh -i ~/.ssh/school ubuntu@8.8.8.8
