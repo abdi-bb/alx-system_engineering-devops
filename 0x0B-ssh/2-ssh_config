@@ -1,13 +1,5 @@
-#!/usr/bin/env bash
-# Configure your SSH configuration file to connect without typing a password
+# ssh config file
 
-CONFIG_FILE=~/.ssh/config
-PRIVATE_KEY=~/.ssh/school
-
-if [ ! -f "$CONFIG_FILE" ]; then
-	touch "$CONFIG_FILE":
-fi
-
-echo "Host *" >> "$CONFIG_FILE"
-echo "	IdentifyFile $PRIVATE_KEY" >> "$CONFIG_FILE"
-echo "	PasswordAuthentication no" >> "$CONFIG_FILE"
+Host *
+	IdentifyFile ~/.ssh/school
+	PasswordAuthentication no
