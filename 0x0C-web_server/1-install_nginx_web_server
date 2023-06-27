@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
-# Bash script that installs Nginx, configures Nginx and restarts it
+# Bash script that installs, configures and restarts nginx
 
+# Install Nginx
 apt-get update
 apt-get install -y nginx
 
+# Configure Nginx
 echo 'server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-	root /var/www/html;
-	index index.html;
+        root /var/www/html;
+        index index.html;
 
-	location / {
-		echo "Hello World!";
-	}
+        location / {
+                echo "Hello World!";
+        }
 }' > /etc/nginx/sites-available/default
 
+# Allow incoming HTTP traffic through UFW
 ufw allow 'Nginx HTTP'
+
+# Restart Nginx
 service nginx restart
