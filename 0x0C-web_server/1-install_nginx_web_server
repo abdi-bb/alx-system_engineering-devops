@@ -1,22 +1,12 @@
 #!/usr/bin/env bash
-# Bash script that installs, configures and restarts nginx
+# Bash script that installs Nginx, updates index file and restarts Nginx
 
 # Install Nginx
 apt-get update
 apt-get install -y nginx
 
-# Configure Nginx
-echo 'server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-
-        root /var/www/html;
-        index index.html;
-
-        location / {
-                echo "Hello World!";
-        }
-}' > /etc/nginx/sites-available/default
+#Update index file
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 
 # Allow incoming HTTP traffic through UFW
 ufw allow 'Nginx HTTP'
