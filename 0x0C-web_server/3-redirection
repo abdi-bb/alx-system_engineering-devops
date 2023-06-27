@@ -7,16 +7,27 @@ sudo apt-get update
 sudo apt-get install -y nginx
 
 # Allow Nginx to serve on HTTP
-ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTP'
 
+# Grant permissions to the user on the website files
 # Modify the default index file served as home page
-echo 'Hello World' >> /var/www/html/index.html
-
-# Give the user permisions on the website files
-sudo chown -R "$USER":"$USER" /var/www/html && sudo chmod -R 755 /var/www
-
-# Redirect /redirect_me to a YouTube video
-sed -i '37i\rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+# Redirect /redirect_me to a YouTube vudeo
+sudo chown -R $USER:$USER /var/www/html && sudo chmod -R 755 /var/www
+echo 'Hello World' | sudo tee /var/www/html/index.html >/dev/null
+echo '\
+	server {
+		listen 80 default_server;
+		listen [::]:80 default_server;
+		root /var/www/html;
+		index index.html index.htm index.nginx-debian.html;
+		server_name _;
+		location / {
+			try_files \$uri \$uri/ =404;
+		}
+		if (\$request_filename ~ redirect_me){
+			rewrite ^ https://sketchfab.com/bluepeno/models permanent;
+		}
+	}' | sudo tee /etc/nginx/sites-enabled/default >/dev/null
 
 # Reload Nginx
-service nginx start
+sudo service nginx restart
