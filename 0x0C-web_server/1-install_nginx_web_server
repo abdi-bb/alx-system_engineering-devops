@@ -3,13 +3,13 @@
 
 # Install Nginx
 apt-get update
-apt-get install -y nginx
-
-#Update index file
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+apt-get -y install nginx
 
 # Allow incoming HTTP traffic through UFW
 ufw allow 'Nginx HTTP'
+
+# Updating index file
+echo "Hello World!" > /var/www/html/index.html
 
 # Restart Nginx
 service nginx restart
