@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script installs Apache web server, creates an index.html file with "Hello Holberton" content,
+# and starts the Apache service.
+
+# Install Apache web server
+sudo apt-get update
+sudo apt-get install -y apache2
+
+# Create index.html file with "Hello Holberton" content
+echo "Hello Holberton" | sudo tee /var/www/html/index.html
+
+# Start Apache service
+sudo service apache2 start
+
