@@ -13,7 +13,8 @@ echo "Hello World!" | sudo tee /var/www/html/index.html >/dev/null
 sudo chown -R "$USER":"$USER" /var/www/html && sudo chmod -R 755 /var/www
 
 # Redirect to /redirect_me to a youtube video
-sudo sed -i 's/server_name _;/server_name _;\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-
+sed -i '37i\rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+replace_with="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "s/server_name _;/$replace_with/" /etc/nginx/sites-enabled/default
 # Reload Nginx
 sudo service nginx start
