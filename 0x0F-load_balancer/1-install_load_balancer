@@ -3,24 +3,25 @@
 sudo apt-get update
 
 # Install HAProxy
-sudo apt-get install -y haproxy
+sudo apt-get -y install haproxy
 
 # Configure HAProxy
-echo "
-frontend web_servers
+config_string=\
+"
+frontend server-frontend
     bind *:80
     mode http
-    default_backend servers
+    default_backend server_backend
 
-backend servers
+backend server_backend
     balance roundrobin
-    server 209086-web-01 52.73.28.65:80
-    server 209086-web-02 54.90.18.103:80
-" | sudo tee -a /etc/haproxy/haproxy.cfg
+    server 209086-web-01 52.73.28.65:80 check
+    server 209086-web-02 54.90.18.103:80 check
+"
+echo "$config_string" | sudo tee -a /etc/haproxy/haproxy.cfg
 
 # Enable HAProxy init script
 echo 'ENABLED=1' | sudo tee -a /etc/default/haproxy
 
 # Restart HAProxy
-sudo service haproxy start
-
+sudo service haproxy restart
