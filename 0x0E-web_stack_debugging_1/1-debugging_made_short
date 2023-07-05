@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script to fix Nginx service not listening on port 80(update task #1)
+
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
