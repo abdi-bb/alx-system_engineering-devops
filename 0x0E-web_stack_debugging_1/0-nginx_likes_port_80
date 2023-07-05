@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
-# Update the package repositories and install Nginx
-apt-get update
-apt-get install -y nginx
+# Script to automate to fix the server not listening on port 80
 
-# Check if Nginx is listening on port 80 and modify if not
-if ! netstat -tuln | grep -q "LISTEN.*:80"; then
-  sed -i 's/listen\s*80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
-
-  # Restart Nginx service
-  sudo service nginx restart
-fi
+sudo rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
