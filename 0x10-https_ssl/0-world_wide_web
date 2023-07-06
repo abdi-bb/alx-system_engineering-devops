@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Script that will display information about subdomains
+
+domain=$1
+subdomain=$2
+
+# Function to display information about a subdomain
+get_subdomain_info() {
+    local subdomain=$1
+    local record_type
+    local destination
+    record_type=$(dig "$subdomain.$domain" +short | awk '{print toupper($1)}')
+    destination=$(dig "$subdomain.$domain" +short)
+    echo "The subdomain $subdomain is a A record and points to $destination"
+}
+
+# Check if subdomain parameter is provided
+if [[ -n $subdomain ]]; then
+    get_subdomain_info "$subdomain"
+else
+    subdomains=("www" "lb-01" "web-01" "web-02")
+    for subdomain in "${subdomains[@]}"; do
+        get_subdomain_info "$subdomain"
+    done
+fi
