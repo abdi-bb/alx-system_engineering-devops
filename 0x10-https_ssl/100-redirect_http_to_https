@@ -51,3 +51,6 @@ backend www-backend
     balance roundrobin
     server 209086-web-01 52.73.28.65:80 check
     server 209086-web-02 54.90.18.103:80 check
+
+backend letsencrypt-backend
+    server letsencrypt 127.0.0.1:54321
