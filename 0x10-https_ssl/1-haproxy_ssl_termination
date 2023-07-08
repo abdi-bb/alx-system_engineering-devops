@@ -40,7 +40,7 @@ frontend www-http
     default_backend www-backend
 
 frontend www-https
-    bind *:443 ssl crt  /etc/letsencrypt/live/www.ivalue.tech-0001/fullchain.pem
+    bind *:443 ssl crt /etc/letsencrypt/live/www.ivalue.tech/fullchain.pem
     http-request set-header X-Forwarded-Proto https
     acl  letsencrypt-acl path_beg /.well-known/acme-challenge/
     use_backend letsencrypt-backend if letsencrypt-acl
