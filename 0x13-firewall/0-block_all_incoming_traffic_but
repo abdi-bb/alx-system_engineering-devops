@@ -1,7 +1,15 @@
 #!/bin/bash
 
-# Block all incoming traffic by default
-sudo utf default deny incoming
+# install ufw
+sudo apt-get -y update
+sudo apt-get -y install ufw
+
+# Disable ufw and clear existing rules
+sudo ufw disable
+
+# Block all incoming and allow all outgoing traffics by default
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
 
 # Allow SSH (port 22), HTTPS (port 443), and HTTP (port 80)
 sudo ufw allow 22/tcp
