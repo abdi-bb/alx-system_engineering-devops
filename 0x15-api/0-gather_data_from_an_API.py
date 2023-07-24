@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Returns to-do list information for a given employee ID."""
+"""Returns to-do list information using APi"""
 import requests
 import sys
 
