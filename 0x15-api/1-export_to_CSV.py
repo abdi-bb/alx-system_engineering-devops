@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Exports to-do list information for a given employee ID to CSV format."""
+"""Exports the previously returned to-do list information to CSV format."""
 import csv
 import requests
 import sys
@@ -14,5 +14,5 @@ if __name__ == "__main__":
     with open("{}.csv".format(user_id), "w", newline="") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         [writer.writerow(
-            [user_id, username, t.get("completed"), t.get("title")]
-         ) for t in todos]
+            [user_id, username, task.get("completed"), task.get("title")]
+         ) for task in todos]
