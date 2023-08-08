@@ -27,7 +27,7 @@ def count_words(subreddit, word_list, after=None, count=None):
 
     # Recursive case: fetch the next page and update the count
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {"User-Agent": "python3:alx-system_engineering-devops"}
+    headers = {"User-Agent": "MyWebApp"}
     params = {"limit": 100, "after": after}
     response = requests.get(url, headers=headers, params=params,
                             allow_redirects=False)
