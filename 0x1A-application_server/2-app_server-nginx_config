@@ -1,0 +1,11 @@
+server {
+    listen 80;
+    server_name 100.26.142.12;
+
+    add_header  X-Served-By "209086-web-01";
+
+    # 2-app_server-nginx_config
+    location /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+    }
+}
