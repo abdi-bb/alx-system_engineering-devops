@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name 127.0.0.1 35.190.188.208;
+    server_name 127.0.0.1 100.26.142.12;
 
     # 2-app_server-nginx_config
     location /airbnb-onepage/ {
@@ -24,6 +24,9 @@ server {
     # 5-app_server-nginx_config
     location / {
         include proxy_params;
-	proxy_pass http://localhost:5003/;
+	proxy_pass http://localhost:5003/2-hbnb/;
     }
+    location /static/ {
+        include proxy_params;
+	proxy_pass http://localhost:5003/;
 }
